@@ -8,6 +8,7 @@ import { TimeAgo } from './TimeAgo'
 import { ReactionButtons } from './ReactionButtons'
 import { selectAllPosts, fetchPosts } from './postsSlice'
 import { Spinner } from '../../components/Spinner'
+import { sagaActions } from '../../sagas/sagaActions'
 
 const PostExcerpt = ({ post }) => {
   return (
@@ -35,7 +36,7 @@ export const PostsList = () => {
 
   useEffect(() => {
     if (postStatus === 'idle') {
-      dispatch(fetchPosts())
+      dispatch({ type: sagaActions.FETCH_POSTS_SAGA })
     }
   }, [postStatus, dispatch])
 
